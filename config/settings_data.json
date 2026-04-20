@@ -1,0 +1,14 @@
+{
+  "current": {
+    "color_pink": "#FF69B4",
+    "color_dark": "#0a0a0a",
+    "type_header_font": "assistant_n4",
+    "type_body_font": "assistant_n4"
+  },
+  "presets": {
+    "Default": {
+      "color_pink": "#FF69B4",
+      "color_dark": "#0a0a0a"
+    }
+  }
+}

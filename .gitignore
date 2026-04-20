@@ -1,7 +1,24 @@
-# Deploy scripts with secrets
+# Deploy scripts with secrets (root level only)
 *.py
-*.js
-!.gitignore
+deploy-*.js
+fix-*.js
+check-*.js
+get-*.js
+list-*.js
+test-*.js
+update-*.js
+inline-*.js
+append-*.js
+new-*.js
+patch-*.js
+verify-*.js
+remove-*.js
+publish-*.js
+refresh-*.js
+fix-*.js
+add-*.js
+download*.js
+fix-*.js
 
 # Environment files
 .env
@@ -20,3 +37,9 @@ memory/
 # Temporary files
 *.tmp
 *.log
+
+# ZIP archives
+*.zip
+
+# Source files (not theme files)
+source.html
