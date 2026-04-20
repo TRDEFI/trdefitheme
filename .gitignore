@@ -1,0 +1,22 @@
+# Deploy scripts with secrets
+*.py
+*.js
+!.gitignore
+
+# Environment files
+.env
+.env.*
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Memory and notes
+memory/
+*.md
+!README.md
+
+# Temporary files
+*.tmp
+*.log

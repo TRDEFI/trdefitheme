@@ -1,0 +1,108 @@
+{% comment %}
+  Featured Product Section — TRDEFI
+  Toy Story Buzz Lightyear Electric Walking Robot
+{% endcomment %}
+
+<section id="products" class="featured-product-section">
+  <div class="featured-product-inner">
+    <div class="featured-label">Featured Product</div>
+    <h2 class="featured-heading">
+      {% if section.settings.product %}{{ section.settings.product.title }}{% else %}Toy Story Buzz Lightyear Electric Walking Robot{% endif %}
+    </h2>
+
+    <div class="featured-grid">
+      <!-- Product Image -->
+      <div class="featured-image-wrapper">
+        <div class="featured-float">
+          {% if section.settings.product.featured_image %}
+            <img src="{{ section.settings.product.featured_image | image_url: width: 600 }}"
+                 alt="{{ section.settings.product.title }}"
+                 class="featured-img"
+                 loading="lazy" />
+          {% else %}
+            <img src="https://images.unsplash.com/photo-1606663889134-b1dedb5ed8b7?w=600&q=80"
+                 alt="Toy Story Buzz Lightyear"
+                 class="featured-img"
+                 loading="lazy" />
+          {% endif %}
+        </div>
+        <div class="featured-star top-left">✦</div>
+        <div class="featured-star bottom-right">✦</div>
+        <div class="featured-price">
+          {% if section.settings.product %}
+            {{ section.settings.product.price | money }}
+          {% else %}
+            £19.99
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="featured-info">
+        <h3 class="featured-title">
+          {% if section.settings.product %}
+            {{ section.settings.product.title }}
+          {% else %}
+            Toy Story Buzz Lightyear Electric Walking Robot
+          {% endif %}
+        </h3>
+
+        <div class="featured-stars">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.6 (82 reviews)</span>
+        </div>
+
+        <p class="featured-description">
+          {% if section.settings.product %}
+            {{ section.settings.product.description | strip_html | truncate: 200 }}
+          {% else %}
+            Bring the magic of Toy Story to life with Buzz Lightyear! This electric walking robot talks and moves just like the space ranger. Perfect gift for kids who love Toy Story adventures.
+          {% endif %}
+        </p>
+
+        <div class="featured-specs">
+          <div class="spec-item">
+            <div class="spec-value">{% if section.settings.product and section.settings.product.variants.first.title != 'Default Title' %}{{ section.settings.product.variants.first.title }}{% else %}Walking Mode{% endif %}</div>
+            <div class="spec-label">Feature</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-value">CE</div>
+            <div class="spec-label">Safety Certified</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-value">3+</div>
+            <div class="spec-label">Age Range</div>
+          </div>
+        </div>
+
+        <a href="{{ section.settings.product.url | default: '/products/toy-story-buzz-lightyear' }}"
+           class="featured-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cart-icon">
+            <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+          Add to Cart
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Product",
+  "tag": "section",
+  "class": "featured-product-section",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Product"
+    }
+  ]
+}
+{% endschema %}

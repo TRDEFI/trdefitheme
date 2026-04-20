@@ -1,0 +1,49 @@
+{
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_text": "TRDEFI."
+      }
+    },
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "title_word1": "ENDLESS",
+        "title_word2": "ADVENTURES",
+        "subtitle": "Explore a delightful collection of plush toys and games designed to ignite imagination and joy.",
+        "button_label": "Explore Collection",
+        "button_link": "/collections/all"
+      }
+    },
+    "featured": {
+      "type": "featured-product",
+      "settings": {
+        "product": "14929683251526"
+      }
+    },
+    "collections": {
+      "type": "collections-grid",
+      "settings": {}
+    },
+    "promise": {
+      "type": "promise-section",
+      "settings": {}
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "logo_text": "TRDEFI",
+        "tagline": "Crafting premium plush toys for endless adventures."
+      }
+    }
+  },
+  "order": [
+    "header",
+    "hero",
+    "featured",
+    "collections",
+    "promise",
+    "footer"
+  ]
+}

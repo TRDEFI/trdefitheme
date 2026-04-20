@@ -1,0 +1,66 @@
+{% comment %}
+  Header Section — TRDEFI
+  Clean header with logo, nav, CTA
+{% endcomment %}
+
+<style>
+.site-header { display: none !important; }
+.shopify-section-group-header { display: none !important; }
+</style>
+
+<header class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="/" class="navbar__logo">TRDEFI<span>.</span></a>
+    
+    <nav class="navbar__nav">
+      <a href="/" class="navbar__link">Home</a>
+      <a href="/collections/all" class="navbar__link">Products</a>
+      <a href="/collections" class="navbar__link">Collections</a>
+      <a href="/pages/about" class="navbar__link">About</a>
+    </nav>
+    
+    <a href="/collections/all" class="navbar__cta">Shop Now</a>
+    
+    <button class="navbar__mobile-toggle" id="mobile-menu-btn" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu__inner">
+    <a href="/" class="mobile-menu__link">Home</a>
+    <a href="/collections/all" class="mobile-menu__link">Products</a>
+    <a href="/collections" class="mobile-menu__link">Collections</a>
+    <a href="/pages/about" class="mobile-menu__link">About</a>
+    <a href="/collections/all" class="mobile-menu__cta">Shop Now</a>
+  </div>
+</div>
+
+<script>
+(function() {
+  var btn = document.getElementById('mobile-menu-btn');
+  var menu = document.getElementById('mobile-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', function() {
+      menu.classList.toggle('is-open');
+    });
+  }
+  
+  window.addEventListener('scroll', function() {
+    var navbar = document.getElementById('navbar');
+    if (navbar) {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    }
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}

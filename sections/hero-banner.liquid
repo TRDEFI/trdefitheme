@@ -1,0 +1,108 @@
+{% comment %}
+  Hero Banner Section — TRDEFI
+  Pink blocks explode on scroll, custom cursor, grid background
+{% endcomment %}
+
+<section id="home" class="hero-banner">
+  <!-- Background Image — Always use gradient (elegant dark pattern) -->
+  <div class="hero-banner__bg">
+    <div class="hero-banner__bg-gradient"></div>
+  </div>
+
+  <!-- Fragments — Pink Grid Pieces (scroll explode) -->
+  <div class="fragment" id="frag1"></div>
+  <div class="fragment" id="frag2"></div>
+  <div class="fragment" id="frag3"></div>
+  <div class="fragment" id="frag4"></div>
+  <div class="fragment" id="frag5"></div>
+  <div class="fragment" id="frag6"></div>
+  <div class="fragment" id="frag7"></div>
+
+  <!-- Hero Content -->
+  <div class="hero-banner__content">
+    <div class="hero-banner__title-row">
+      <h1 class="hero-title">
+        <span class="pink-box" id="hero-text-1" style="background:#ff69b4;color:#000;padding:0.1em 0.4em;display:inline-block;font-weight:900;line-height:1.1;font-family:'Inter',sans-serif;">{{ section.settings.title_word1 | default: 'ENDLESS' }}</span>
+      </h1>
+      <h1 class="hero-title">
+        <span class="pink-box" id="hero-text-2" style="background:#ff69b4;color:#000;padding:0.1em 0.4em;display:inline-block;font-weight:900;line-height:1.1;font-family:'Inter',sans-serif;">{{ section.settings.title_word2 | default: 'ADVENTURES' }}</span>
+      </h1>
+    </div>
+
+    <p class="hero-subtitle">
+      {{ section.settings.subtitle | default: 'Explore a delightful collection of plush toys and games designed to ignite imagination and joy.' }}
+    </p>
+
+    {% if section.settings.button_label != blank %}
+      <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="hero-cta">
+        {{ section.settings.button_label }}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </a>
+    {% endif %}
+  </div>
+
+  {% comment %}Watermark removed{% endcomment %}
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "section",
+  "class": "hero-banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title_word1",
+      "label": "Title Word 1 (left line)",
+      "default": "ENDLESS"
+    },
+    {
+      "type": "text",
+      "id": "title_word2",
+      "label": "Title Word 2 (right line)",
+      "default": "ADVENTURES"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Explore a delightful collection of plush toys and games designed to ignite imagination and joy."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Explore Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Title Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

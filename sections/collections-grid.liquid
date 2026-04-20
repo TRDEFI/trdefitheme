@@ -1,0 +1,108 @@
+{% comment %}
+  Collections Grid Section — TRDEFI
+  Reference: 6 colored cards with emoji icons
+{% endcomment %}
+
+<section id="collections" class="collections-section">
+  <div class="collections-header">
+    <div class="collections-eyebrow">Shop By Category</div>
+    <h2 class="collections-title">
+      Explore Our <span class="pink-text">Collections</span>
+    </h2>
+  </div>
+
+  <div class="collections-grid" id="collection-grid">
+    {%- for block in section.blocks -%}
+      <a href="{{ block.settings.collection.url }}" class="collection-card" {{ block.shopify_attributes }}>
+        <div class="collection-card__bg" style="background-color: {{ block.settings.card_color }};"></div>
+        <div class="collection-card__text">
+          {%- if block.settings.icon -%}
+            <div class="collection-card__icon">{{ block.settings.icon }}</div>
+          {%- endif -%}
+          <div class="collection-card__name" style="color: {{ block.settings.text_color }};">{{ block.settings.title }}</div>
+          {%- if block.settings.subtitle -%}
+            <div class="collection-card__category" style="color: {{ block.settings.text_color }};">{{ block.settings.subtitle }}</div>
+          {%- endif -%}
+        </div>
+      </a>
+    {%- else -%}
+      <!-- Default 6 colored cards when no blocks -->
+      <a href="/collections/kids" class="collection-card">
+        <div class="collection-card__bg" style="background-color: #ff69b4;"></div>
+        <div class="collection-card__text">
+          <div class="collection-card__icon">🧸</div>
+          <div class="collection-card__name">KIDS</div>
+          <div class="collection-card__category">Fun & Learning</div>
+        </div>
+      </a>
+      <a href="/collections/women" class="collection-card">
+        <div class="collection-card__bg" style="background-color: #4a90e2;"></div>
+        <div class="collection-card__text">
+          <div class="collection-card__icon">🦋</div>
+          <div class="collection-card__name">WOMEN</div>
+          <div class="collection-card__category">Trendy Finds</div>
+        </div>
+      </a>
+      <a href="/collections/men" class="collection-card">
+        <div class="collection-card__bg" style="background-color: #7ed321;"></div>
+        <div class="collection-card__text">
+          <div class="collection-card__icon">⚡</div>
+          <div class="collection-card__name">MEN</div>
+          <div class="collection-card__category">Bold Choices</div>
+        </div>
+      </a>
+      <a href="/collections/sale" class="collection-card">
+        <div class="collection-card__bg" style="background-color: #bd10e0;"></div>
+        <div class="collection-card__text">
+          <div class="collection-card__icon">🔥</div>
+          <div class="collection-card__name">SALE</div>
+          <div class="collection-card__category">Hot Deals</div>
+        </div>
+      </a>
+      <a href="/collections/back-in-stock" class="collection-card">
+        <div class="collection-card__bg" style="background-color: #f5a623;"></div>
+        <div class="collection-card__text">
+          <div class="collection-card__icon">⭐</div>
+          <div class="collection-card__name">BACK IN STOCK</div>
+          <div class="collection-card__category">Fresh Returns</div>
+        </div>
+      </a>
+      <a href="/collections/new" class="collection-card">
+        <div class="collection-card__bg" style="background-color: #50e3c2;"></div>
+        <div class="collection-card__text">
+          <div class="collection-card__icon">🚀</div>
+          <div class="collection-card__name">NEW ARRIVALS</div>
+          <div class="collection-card__category">Just Landed</div>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collections Grid",
+  "tag": "section",
+  "class": "collections-section",
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Collection Card",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "icon", "label": "Emoji Icon" },
+        { "type": "text", "id": "title", "label": "Card Title" },
+        { "type": "text", "id": "subtitle", "label": "Card Subtitle" },
+        { "type": "textarea", "id": "description", "label": "Card Description" },
+        { "type": "color", "id": "card_color", "label": "Card Background Color", "default": "#ff69b4" },
+        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#000000" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collections Grid"
+    }
+  ]
+}
+{% endschema %}
