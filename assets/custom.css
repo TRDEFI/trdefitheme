@@ -67,12 +67,18 @@ body {
 }
 
 /* HIDE SHOPIFY DEFAULT HEADER */
-.site-header {
+.site-header,
+.header,
+.header-wrapper,
+.shopify-section-header,
+.shopify-section-group-header {
   display: none !important;
 }
 
-.shopify-section-group-header {
-  display: none !important;
+/* SHOW OUR CUSTOM NAVBAR */
+.navbar,
+.navbar * {
+  display: flex !important;
 }
 
 .navbar.scrolled {
@@ -910,6 +916,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #ff69b4;
+  color: #fff;
 }
 
 .promise-section__box-icon {
