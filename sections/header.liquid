@@ -1,66 +1,172 @@
 {% comment %}
   Header Section — TRDEFI
-  Clean header with logo, nav, CTA
+  Shopify Online Store 2.0 compatible header
 {% endcomment %}
 
-<style>
-.site-header { display: none !important; }
-.shopify-section-group-header { display: none !important; }
-</style>
+{%- style -%}
+.section-header {
+  margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
+}
 
-<header class="navbar" id="navbar">
-  <div class="navbar__inner">
-    <a href="/" class="navbar__logo">TRDEFI<span>.</span></a>
-    
-    <nav class="navbar__nav">
-      <a href="/" class="navbar__link">Home</a>
-      <a href="/collections/all" class="navbar__link">Products</a>
-      <a href="/collections" class="navbar__link">Collections</a>
-      <a href="/pages/about" class="navbar__link">About</a>
-    </nav>
-    
-    <a href="/collections/all" class="navbar__cta">Shop Now</a>
-    
-    <button class="navbar__mobile-toggle" id="mobile-menu-btn" aria-label="Open menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+@media screen and (min-width: 750px) {
+  .section-header {
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+}
+{%- endstyle -%}
+
+{%- if settings.cart_type == 'drawer' -%}
+  {%- render 'cart-drawer' -%}
+{%- endif -%}
+
+<header class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
+  <div class="page-width">
+    <div class="header-inner">
+      <!-- Logo -->
+      <a href="/" class="header__logo-link">
+        <span class="header__logo-text">TRDEFI<span style="color:#ff69b4">.</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="header__nav">
+        <a href="/" class="header__nav-link">Home</a>
+        <a href="/collections/all" class="header__nav-link">Products</a>
+        <a href="/collections" class="header__nav-link">Collections</a>
+        <a href="/pages/about" class="header__nav-link">About</a>
+      </nav>
+
+      <!-- CTA -->
+      <a href="/collections/all" class="header__cta">Shop Now</a>
+    </div>
   </div>
 </header>
 
-<div class="mobile-menu" id="mobile-menu">
-  <div class="mobile-menu__inner">
-    <a href="/" class="mobile-menu__link">Home</a>
-    <a href="/collections/all" class="mobile-menu__link">Products</a>
-    <a href="/collections" class="mobile-menu__link">Collections</a>
-    <a href="/pages/about" class="mobile-menu__link">About</a>
-    <a href="/collections/all" class="mobile-menu__cta">Shop Now</a>
-  </div>
-</div>
+<style>
+/* HIDE ALL SHOPIFY DEFAULT HEADERS */
+.site-header,
+.header,
+.header-wrapper,
+.shopify-section-header,
+.shopify-section-group-header,
+.header__heading,
+.header__icon--cart {
+  display: none !important;
+}
 
-<script>
-(function() {
-  var btn = document.getElementById('mobile-menu-btn');
-  var menu = document.getElementById('mobile-menu');
-  if (btn && menu) {
-    btn.addEventListener('click', function() {
-      menu.classList.toggle('is-open');
-    });
+/* OUR CUSTOM HEADER - Always show */
+.header-wrapper,
+.header-wrapper * {
+  display: flex !important;
+  visibility: visible !important;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+}
+
+.header__logo-link {
+  text-decoration: none;
+}
+
+.header__logo-text {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.header__nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.header__nav-link {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.header__nav-link:hover {
+  color: #ff69b4;
+}
+
+.header__cta {
+  background: #ff69b4;
+  color: #000 !important;
+  padding: 0.5rem 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  text-decoration: none;
+}
+
+.header__cta:hover {
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+}
+
+@media (max-width: 768px) {
+  .header__nav {
+    display: none;
   }
-  
-  window.addEventListener('scroll', function() {
-    var navbar = document.getElementById('navbar');
-    if (navbar) {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
-    }
-  });
-})();
-</script>
+  .header-inner {
+    padding: 1rem;
+  }
+}
+</style>
 
 {% schema %}
 {
   "name": "Header",
-  "settings": []
+  "tag": "section",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        { "value": "scheme-1", "label": "Scheme 1" },
+        { "value": "scheme-2", "label": "Scheme 2" },
+        { "value": "scheme-3", "label": "Scheme 3" }
+      ],
+      "default": "scheme-1",
+      "label": "Color Scheme"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_line_separator",
+      "default": false,
+      "label": "Show separator line"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "default": 0,
+      "unit": "px",
+      "label": "Margin bottom"
+    }
+  ],
+  "presets": [
+    {
+      "name": "TRDEFI Header"
+    }
+  ]
 }
 {% endschema %}
